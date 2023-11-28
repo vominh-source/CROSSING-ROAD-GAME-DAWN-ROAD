@@ -4,8 +4,9 @@ void cLane::createObject() {//khoi tao cho moi lane voi so numbObject quy dinh
 		//int startPos = 0; //move from left
 		//int startPos = 1350; //move from right
 		if (type == 3){ //water
-			cObject* temp = new cDog;
+			cObject* temp = new cBridge;
 			temp->assignX(getRandomNumber(0, 1334 - temp->getConstWidth()));
+			temp->assignY(coordY);
 			objs.push_back(temp);
 		}
 		else if (direction == 1) {
@@ -21,15 +22,9 @@ void cLane::createObject() {//khoi tao cho moi lane voi so numbObject quy dinh
 					temp = new cDino;
 				}
 				int newX = disX + getRandomNumber(0, 1334/numObj);
-
 				temp->assignX(newX);//tuc la chia lane duong thanh cac khoang
-				//sau do x duoc random generate trong cai khoang nay
-				//temp->assignX(getRandomNumber(startPos, startPos + saveDistance));
-				//startPos += temp.width; //move from right
-				//startPos -= temp.width; //move from left
 				disX += newX + temp->getWidth();//temp->getwith() tranh vi tri x ms trung vao khoang width cua xe cu: /   x  /
-
-				temp->assignY(coordY);
+				temp->assignY(coordY - temp->getHeight()*2/3);
 				temp->assignStatus(1); //right to left
 				objs.push_back(temp);
 			}
@@ -47,13 +42,9 @@ void cLane::createObject() {//khoi tao cho moi lane voi so numbObject quy dinh
 					temp = new cDino;
 				}
 				int newX = disX - getRandomNumber(0, 1334 / numObj) - temp->getWidth();
-				//temp->assignX(getRandomNumber(1350 - (int)1350 / numObj, 1350 - temp->getWidth()));
 				temp->assignX(newX);
-				//temp->assignX(getRandomNumber(startPos, startPos + saveDistance));
-				//startPos += temp.width; //move from right
-				//startPos -= temp.width; //move from left
 				disX -=  (1334 - newX);
-				temp->assignY(coordY);
+				temp->assignY(coordY - temp->getHeight()*2/3);
 				temp->assignStatus(0); //left to right
 				objs.push_back(temp);
 			}
@@ -115,12 +106,12 @@ void cLane::setDirection(bool a) {
 }
 cLane::cLane(int numObject, int y) {
 	int random = rand() % 6;
-	if (random == 0) {//grass : ratio 1/6
+	if (random == 1) {//grass : ratio 1/6
 		numObj = 0;
 		type = 1;
 		filename = "grass1.bmp";
 	}
-	else if(random ==1 || random == 2 || random == 3){//road: ratio 3/6
+	else if(random == 2 || random == 3){//road: ratio 3/6
 		numObj = numObject;
 		type = 2;
 		filename = "Roadlane.bmp";
@@ -173,7 +164,7 @@ void cLane::setType(int type) {
 	}
 	else if (type == 2)
 	{
-		filename = "ROAD.bmp";
+		filename = "Roadlane.bmp";
 		numObj = 3;
 	}
 	else if (type == 3)

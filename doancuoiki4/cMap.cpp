@@ -11,30 +11,32 @@ cListObject cMap::temp = {};
 cListLane cMap::temp1 = {};
 void cMap::simulatepeople(Input* input, float speed, Render_State* a)
 {
-	
-
 	if (is_down(BUTTON_UP) && people.getY() > 0 + speed)
 	{
 		this->people.assignY(this->people.getY() - speed);
 		loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
 
 	}
-	if (is_down(BUTTON_DOWN) && people.getY() + people.getHeight() + speed < 901) {
+	else if (is_down(BUTTON_DOWN) && people.getY() + people.getHeight() + speed < 901) {
 		this->people.assignY(this->people.getY() + speed);
 		loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
 
 	}
-	if (is_down(BUTTON_RIGHT) && people.getX() + people.getWidth() + speed < 1334) {
+	else if (is_down(BUTTON_RIGHT) && people.getX() + people.getWidth() + speed < 1334) {
 		this->people.assignX(this->people.getX() + speed);
 		loadImage("ghost2.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
 	}
-	if (is_down(BUTTON_LEFT) && people.getX() > 0)
+	else if (is_down(BUTTON_LEFT) && people.getX() > 0)
 	{
 		this->people.assignX(this->people.getX() - speed);
 		loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
 
 	}
-	loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
+	else
+	{
+		loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
+	}
+	
 }
 void cMap::redrawObject(int timeuse, float speed)//thay doi thang ListObject trong cMap
 {
@@ -42,7 +44,7 @@ void cMap::redrawObject(int timeuse, float speed)//thay doi thang ListObject tro
 	bool flagSign = 1; //1: den xanh, 0: den do 
 	//assign lai toa do
 	for (int i = 0; i < lanes.size(); i++) {
-		if (lanes[i]->getType() != 3)
+		if (lanes[i]->getType() != 3 && lanes[i]->getType() != 1)
 		{
 			if ( timeuse % lanes[i]->getTime() == 0)
 			{
@@ -311,7 +313,7 @@ case vk: {\
 					{
 						if (k[j]->getObjectFileName() == "bus.bmp")
 						{
-							loadImage(k[j]->getObjectFileName(), *&a, k[j]->getX(), y, 255,255, 0);
+							loadImage(k[j]->getObjectFileName(), *&a, k[j]->getX(), y, 255,255, 255);
 						}
 						else
 						{
@@ -327,7 +329,6 @@ case vk: {\
 				{
 					Sleep(50);
 				}
-
 				StretchDIBits(*hdc, 0, 0, a->width, a->height, 0, 0, a->width, a->height, a->memory, &a->bitmap_info, DIB_RGB_COLORS, SRCCOPY);
 
 			end = clock();// Bấm thời gian kết thúc

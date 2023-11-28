@@ -5,6 +5,7 @@
 #include "time.h"
 #include"Header.h"
 #include"cListLane.h"
+#include "cBridge.h"
 #include "Input.h"
 class cMap
 {

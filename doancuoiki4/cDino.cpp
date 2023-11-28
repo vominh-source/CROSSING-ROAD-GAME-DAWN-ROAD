@@ -11,11 +11,12 @@ string cDino::getObjectFileName()
 {
 	return filename;
 }
+
 cDino::cDino()
 {
-	filename = "new2.bmp";
-	this->width = 225;
-	this->height = 84;
-	this->const_height = 84;
-	this->const_width = 225;
+	filename = "BigTree.bmp";//BigTree
+	this->width = 138;
+	this->height = 150;
+	this->const_height = 138;
+	this->const_width = 150;
 }

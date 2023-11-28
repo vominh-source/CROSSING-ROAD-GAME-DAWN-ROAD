@@ -21,6 +21,7 @@ void cListLane::Create_Lane(int NumberObj)//create list lane, gan toa do cho tun
 		
 		cLane *temp=new cLane(NumberObj, Distance_Y);
 		temp->createObject();
+		
 		if (i != 0)
 		{
 			if (lanes[i-1]->getType() == 3)
@@ -45,7 +46,7 @@ void cListLane::Create_Lane(int NumberObj)//create list lane, gan toa do cho tun
 	//while(lanes[7]->)
 	lanes.push_back( new cLane(3, SIZELANE* (numLanes - 1)));
 	lanes[numLanes - 1]->setType(1);
-	lanes[numLanes-1]->createObject();
+	//lanes[numLanes-1]->createObject();
 
 }
 vector<cLane*> cListLane::cListLane::Get_ListLane()

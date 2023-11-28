@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cBridge.cpp" />
     <ClCompile Include="cDog.cpp" />
     <ClCompile Include="cCar.cpp" />
     <ClCompile Include="cConsole.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cBridge.h" />
     <ClInclude Include="cdog.h" />
     <ClInclude Include="cCar.h" />
     <ClInclude Include="cConsole.h" />
