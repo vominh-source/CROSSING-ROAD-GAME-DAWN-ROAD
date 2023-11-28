@@ -123,7 +123,7 @@ cLane::cLane(int numObject, int y) {
 	else if(random ==1 || random == 2 || random == 3){//road: ratio 3/6
 		numObj = numObject;
 		type = 2;
-		filename = "ROAD.bmp";
+		filename = "Roadlane.bmp";
 	}
 	else//river: ratio 2/6
 	{

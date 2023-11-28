@@ -11,21 +11,30 @@ cListObject cMap::temp = {};
 cListLane cMap::temp1 = {};
 void cMap::simulatepeople(Input* input, float speed, Render_State* a)
 {
+	
+
 	if (is_down(BUTTON_UP) && people.getY() > 0 + speed)
 	{
 		this->people.assignY(this->people.getY() - speed);
+		loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
+
 	}
 	if (is_down(BUTTON_DOWN) && people.getY() + people.getHeight() + speed < 901) {
 		this->people.assignY(this->people.getY() + speed);
+		loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
+
 	}
 	if (is_down(BUTTON_RIGHT) && people.getX() + people.getWidth() + speed < 1334) {
 		this->people.assignX(this->people.getX() + speed);
+		loadImage("ghost2.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
 	}
 	if (is_down(BUTTON_LEFT) && people.getX() > 0)
 	{
 		this->people.assignX(this->people.getX() - speed);
+		loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
+
 	}
-	loadImage("dog.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
+	loadImage("ghost1.bmp", *&a, this->people.getX(), this->people.getY(), 0, 0, 0);
 }
 void cMap::redrawObject(int timeuse, float speed)//thay doi thang ListObject trong cMap
 {
@@ -300,7 +309,15 @@ case vk: {\
 					vector <cObject*> k = lanes[i]->getList();
 					for (int j = 0; j < k.size(); j++)
 					{
-						loadImage(k[j]->getObjectFileName(), *&a,k[j]->getX(), y, 0, 0, 0);
+						if (k[j]->getObjectFileName() == "bus.bmp")
+						{
+							loadImage(k[j]->getObjectFileName(), *&a, k[j]->getX(), y, 255,255, 0);
+						}
+						else
+						{
+							loadImage(k[j]->getObjectFileName(), *&a, k[j]->getX(), y, 0, 0, 0);
+						}
+						
 					}
 				}
 				redrawObject(timeUse, speed);
@@ -308,16 +325,16 @@ case vk: {\
 				Endless(timeUse);
 				if (checkCollison())
 				{
-					//Sleep(50);
-					loadImage("car.bmp", *&a, 901, 0);
+					Sleep(50);
 				}
+
 				StretchDIBits(*hdc, 0, 0, a->width, a->height, 0, 0, a->width, a->height, a->memory, &a->bitmap_info, DIB_RGB_COLORS, SRCCOPY);
 
 			end = clock();// Bấm thời gian kết thúc
 			timeUse = (double)(end - start) / CLOCKS_PER_SEC; // Đo thời gian thực
 			//flagMove = false; // Gán biến di chuyển là false tương ứng người đang đứng yên
 			//flagStop = 0;
-			
+
 			
 	}
 

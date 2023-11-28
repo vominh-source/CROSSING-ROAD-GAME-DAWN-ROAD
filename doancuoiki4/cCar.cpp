@@ -7,7 +7,7 @@ void cCar::assignInitSize()
 
 cCar::cCar()
 {
-	this->filename = "dog.bmp";
+	this->filename = "bus.bmp";
 	this->width = 160;
 	this->height = 99;
 	this->const_height = 99;
